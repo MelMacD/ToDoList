@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -46,6 +47,7 @@
                                         </constraints>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="Gjk-Yb-HpL" appends="YES" id="eGe-xe-H9P"/>
+                                            <outletCollection property="gestureRecognizers" destination="xdV-rW-5IQ" appends="YES" id="EQQ-Bh-KAM"/>
                                         </connections>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1Q-GF-aDA">
@@ -104,6 +106,11 @@
                         <action selector="selectImage:" destination="BYZ-38-t0r" id="Pv5-c8-R2Q"/>
                     </connections>
                 </tapGestureRecognizer>
+                <pinchGestureRecognizer id="xdV-rW-5IQ">
+                    <connections>
+                        <action selector="scaleImageWhenPinched:" destination="BYZ-38-t0r" id="2J5-6i-Eqt"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="133.59999999999999" y="133.5832083958021"/>
         </scene>

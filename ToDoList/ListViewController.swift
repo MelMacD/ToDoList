@@ -61,6 +61,9 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         showAlertToPickImage()
     }
     
+    @IBAction func scaleImageWhenPinched(_ sender: UIPinchGestureRecognizer) {
+    }
+    
     //MARK: Custom Functions
     
     func selectImageFromLibrary() {
