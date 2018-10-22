@@ -15,14 +15,11 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var pictureImageView: UIImageView!
-    @IBOutlet weak var notesTextView: UITextView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         titleTextField.delegate = self
-        notesTextView.delegate = self
     }
 
     //MARK: UITextFieldDelegate
@@ -60,18 +57,58 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     }
     
     //MARK: Actions
-    @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
-        
+    @IBAction func selectImage(_ sender: UITapGestureRecognizer) {
+        showAlertToPickImage()
+    }
+    
+    //MARK: Custom Functions
+    
+    func selectImageFromLibrary() {
+        // Hide the keyboard.
         titleTextField.resignFirstResponder()
-        notesTextView.resignFirstResponder()
+        // one for notes text field too
         
+        // UIImagePickerController is a view controller that lets a user pick media from their photo library.
         let imagePickerController = UIImagePickerController()
         
-        imagePickerController.sourceType = .savedPhotosAlbum // be able to either take photo from album or take new photo
+        // Only allow photos to be picked, not taken.
+        imagePickerController.sourceType = .photoLibrary
         
+        // Make sure ViewController is notified when the user picks an image.
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
     }
     
+    func selectImageWithCamera() {
+        // Hide the keyboard.
+        titleTextField.resignFirstResponder()
+        // one for notes text field too
+        
+        // UIImagePickerController is a view controller that lets a user pick media from their photo library.
+        let imagePickerController = UIImagePickerController()
+        
+        // Only allow photos to be taken with the camera
+        imagePickerController.sourceType = .camera
+        
+        // Make sure ViewController is notified when the user picks an image.
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func showAlertToPickImage() {
+        let alert = UIAlertController(title: "How would you like to set the image?", message: "You can either choose from the image gallery or take a picture.", preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Use Gallery", style: .default, handler: { action in self.selectImageFromLibrary()
+        }))
+        alert.addAction(UIAlertAction(title: "Use Camera", style: .default, handler: { action in
+            self.selectImageWithCamera()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        self.present(alert, animated: true)
+    }
+
 }
 

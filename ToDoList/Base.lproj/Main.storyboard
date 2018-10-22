@@ -38,16 +38,14 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="7jU-BP-GsM">
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="125" placeholderIntrinsicHeight="125" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="ybx-e8-EF0">
                                         <rect key="frame" x="0.0" y="95" width="125" height="125"/>
                                         <gestureRecognizers/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="125" id="EqT-nT-EvG"/>
-                                            <constraint firstAttribute="width" secondItem="7jU-BP-GsM" secondAttribute="height" multiplier="1:1" id="Jmy-C5-M0m"/>
-                                            <constraint firstAttribute="height" constant="125" id="xTm-dL-mLa"/>
+                                            <constraint firstAttribute="width" secondItem="ybx-e8-EF0" secondAttribute="height" multiplier="1:1" id="2kA-OQ-q08"/>
                                         </constraints>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="a5L-Jp-Fka" appends="YES" id="QzG-Yj-iWI"/>
+                                            <outletCollection property="gestureRecognizers" destination="Gjk-Yb-HpL" appends="YES" id="eGe-xe-H9P"/>
                                         </connections>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1Q-GF-aDA">
@@ -96,15 +94,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="notesTextView" destination="jpi-Pu-wbB" id="9Mg-ye-uL5"/>
-                        <outlet property="pictureImageView" destination="7jU-BP-GsM" id="qcB-fO-n0i"/>
+                        <outlet property="pictureImageView" destination="ybx-e8-EF0" id="njm-kj-hql"/>
                         <outlet property="titleTextField" destination="vdP-Up-J9D" id="Yt6-vr-V7c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="a5L-Jp-Fka">
+                <tapGestureRecognizer id="Gjk-Yb-HpL">
                     <connections>
-                        <action selector="selectImageFromPhotoLibrary:" destination="BYZ-38-t0r" id="6X8-NI-Kjp"/>
+                        <action selector="selectImage:" destination="BYZ-38-t0r" id="Pv5-c8-R2Q"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
