@@ -2,6 +2,8 @@
 //  ListViewController.swift
 //  ToDoList
 //
+// Do not crop image, save in image model the original image, zoom level, and center, view or scrollview
+//
 //  Created by Melanie MacDonald on 2018-10-15.
 //  Copyright © 2018 Melanie MacDonald. All rights reserved.
 //
@@ -15,14 +17,16 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var pictureImageView: UIImageView!
+    @IBOutlet weak var notesTextView: UITextView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         titleTextField.delegate = self
+        notesTextView.delegate = self
     }
 
-    //MARK: UITextFieldDelegate test
+    //MARK: UITextFieldDelegate
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Hide the keyboard
@@ -37,6 +41,14 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         // Executes on user tapping text field to edit, can indicate to disable save button or not
+    }
+    
+    //MARK: UITextViewDelegate // need to have something like a "done" button on view
+    func textViewShouldReturn(_ textView: UITextView) -> Bool {
+        // Hide the keyboard
+        textView.resignFirstResponder()
+        
+        return true
     }
     
     //MARK: UIImagePickerControllerDelegate
