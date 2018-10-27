@@ -29,6 +29,14 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         titleTextField.delegate = self
         notesTextView.delegate = self
         
+        // Set up views if editing an existing Item.
+        if let listItem = listItem {
+            navigationItem.title = listItem.title
+            titleTextField.text = listItem.title
+            pictureImageView.image = listItem.photo
+            notesTextView.text = listItem.notes
+        }
+        
         // Enable the save button only if there is a valid title
         updateSaveButtonState()
     }

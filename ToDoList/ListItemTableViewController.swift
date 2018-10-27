@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os.log
 
 class ListItemTableViewController: UITableViewController {
 
@@ -89,15 +90,36 @@ class ListItemTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        
+        switch(segue.identifier ?? "") {
+        case "AddItem":
+            os_log("Adding a new meal", log: OSLog.default, type: .debug)
+        case "ShowDetail":
+            guard let listItemDetailViewController = segue.destination as? ListViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            guard let selectedItemCell = sender as? ListItemTableViewCell else {
+                fatalError("Unexpected sender: \(String(describing: sender))")
+            }
+            
+            guard let indexPath = tableView.indexPath(for: selectedItemCell) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+            let selectedItem = listItems[indexPath.row]
+            listItemDetailViewController.listItem = selectedItem
+        default:
+            fatalError("Unexpected Segue Identifer; \(String(describing: segue.identifier))")
+        }
     }
-    */
+ 
 
     //MARK: Actions
     @IBAction func unwindToItemList(sender: UIStoryboardSegue) {

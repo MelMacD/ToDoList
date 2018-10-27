@@ -162,6 +162,7 @@
                                     <outlet property="pictureImageView" destination="7n1-c8-7uJ" id="q6l-9t-WG2"/>
                                     <outlet property="priorityImageView" destination="Vw8-qc-Lnh" id="7k7-Cd-XuH"/>
                                     <outlet property="titleLabel" destination="tRb-p6-bcg" id="HTg-7h-3ML"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="ShowDetail" id="kF6-Ob-aYT"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -173,7 +174,7 @@
                     <navigationItem key="navigationItem" title="To-Do List" id="btY-KY-bvn">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="TvU-pN-0SS">
                             <connections>
-                                <segue destination="Wca-wn-pMi" kind="presentation" identifier="addItem" id="TDB-uA-XLD"/>
+                                <segue destination="Wca-wn-pMi" kind="presentation" identifier="AddItem" id="TDB-uA-XLD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -216,10 +217,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cCd-hu-xea" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1072.8" y="133.5832083958021"/>
+            <point key="canvasLocation" x="1119" y="510"/>
         </scene>
     </scenes>
     <resources>
         <image name="defaultPhoto" width="540" height="540"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="kF6-Ob-aYT"/>
+    </inferredMetricsTieBreakers>
 </document>
