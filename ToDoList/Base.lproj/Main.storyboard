@@ -85,15 +85,21 @@
                     </view>
                     <navigationItem key="navigationItem" title="New Item" id="wLd-Lr-gLC">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="4VD-Et-ThY"/>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="Jjx-ea-ulb"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="Jjx-ea-ulb">
+                            <connections>
+                                <segue destination="e1u-aU-dF9" kind="unwind" unwindAction="unwindToItemListWithSender:" id="IBc-eS-9Jg"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="notesTextView" destination="Ire-am-X6h" id="KaX-MS-iTz"/>
                         <outlet property="pictureImageView" destination="ybx-e8-EF0" id="njm-kj-hql"/>
+                        <outlet property="saveButton" destination="Jjx-ea-ulb" id="ybJ-Oj-9S5"/>
                         <outlet property="titleTextField" destination="vdP-Up-J9D" id="Yt6-vr-V7c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="e1u-aU-dF9" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="Gjk-Yb-HpL">
                     <connections>
                         <action selector="selectImage:" destination="BYZ-38-t0r" id="Pv5-c8-R2Q"/>

@@ -99,6 +99,15 @@ class ListItemTableViewController: UITableViewController {
     }
     */
 
+    //MARK: Actions
+    @IBAction func unwindToItemList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? ListViewController, let listItem = sourceViewController.listItem {
+            // Add a new item
+            let newIndexPath = IndexPath(row: listItems.count, section: 0)
+            listItems.append(listItem)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
+    }
     //MARK: Private Methods
     
     private func loadSampleMeals() {

@@ -18,7 +18,8 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var notesTextView: UITextView!
-    @IBOutlet weak var saveButton: UIBarButtonItem
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
     
     // This value is either passed by 'ListItemTableViewController' in 'prepare(for:sender:)' or constructed as part of adding a new meal
     var listItem: ListItem?
@@ -27,6 +28,9 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         super.viewDidLoad()
         titleTextField.delegate = self
         notesTextView.delegate = self
+        
+        // Enable the save button only if there is a valid title
+        updateSaveButtonState()
     }
 
     //MARK: UITextFieldDelegate
@@ -40,10 +44,14 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         // executes after done editing, can disable save button or not
+        updateSaveButtonState()
+        navigationItem.title = textField.text
     }
     
+    // TODO connect the save button being enabled or disabled to every required field, as necessary
     func textFieldDidBeginEditing(_ textField: UITextField) {
         // Executes on user tapping text field to edit, can indicate to disable save button or not
+        saveButton.isEnabled = false
     }
     
     //MARK: UITextViewDelegate // need to have something like a "done" button on view
@@ -69,6 +77,26 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         pictureImageView.image = selectedImage
         
         dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: Navigation
+    
+    // Configures a view controller before it's presented
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        // Confgure the destination view controller only when save button is pressed
+        guard let button = sender as? UIBarButtonItem, button === saveButton else {
+            os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+            return
+        }
+        
+        let title = titleTextField.text ?? ""
+        let photo = pictureImageView.image
+        let notes = notesTextView.text ?? ""
+        
+        // Set the meal to be passed to ListItemTableViewController after the unwind seque
+        listItem = ListItem(title: title, photo: photo, notes: notes)
     }
     
     //MARK: Actions
@@ -128,5 +156,11 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         self.present(alert, animated: true)
     }
 
+    //MARK: Private Methods
+    private func updateSaveButtonState() {
+        // Disable the Save button if the text field is empty
+        let text = titleTextField.text ?? ""
+        saveButton.isEnabled = !text.isEmpty
+    }
 }
 
