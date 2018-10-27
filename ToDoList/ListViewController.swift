@@ -36,6 +36,9 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         super.viewDidLoad()
         titleTextField.delegate = self
         notesTextView.delegate = self
+        
+        notesTextView.layer.borderWidth = 1
+        notesTextView.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
 
         // Set up views if editing an existing Item.
         if let listItem = listItem {
