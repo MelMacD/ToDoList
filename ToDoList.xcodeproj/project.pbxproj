@@ -15,6 +15,7 @@
 		D95C8BF22181230C00EA49B1 /* ListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C8BF12181230C00EA49B1 /* ListItemTableViewCell.swift */; };
 		D95C8BF42181258F00EA49B1 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C8BF32181258F00EA49B1 /* ListItem.swift */; };
 		D95C8BF62181259B00EA49B1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C8BF52181259B00EA49B1 /* Image.swift */; };
+		D984E9602184F82000DF2F8C /* ListItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D984E95F2184F82000DF2F8C /* ListItemTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		D95C8BF12181230C00EA49B1 /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemTableViewCell.swift; sourceTree = "<group>"; };
 		D95C8BF32181258F00EA49B1 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 		D95C8BF52181259B00EA49B1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		D984E95F2184F82000DF2F8C /* ListItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				D92C8E842175328C002A4A08 /* AppDelegate.swift */,
 				D92C8E862175328C002A4A08 /* ListViewController.swift */,
 				D95C8BF12181230C00EA49B1 /* ListItemTableViewCell.swift */,
+				D984E95F2184F82000DF2F8C /* ListItemTableViewController.swift */,
 				D95C8BF32181258F00EA49B1 /* ListItem.swift */,
 				D95C8BF52181259B00EA49B1 /* Image.swift */,
 				D92C8E882175328C002A4A08 /* Main.storyboard */,
@@ -148,6 +151,7 @@
 				D92C8E872175328C002A4A08 /* ListViewController.swift in Sources */,
 				D92C8E852175328C002A4A08 /* AppDelegate.swift in Sources */,
 				D95C8BF22181230C00EA49B1 /* ListItemTableViewCell.swift in Sources */,
+				D984E9602184F82000DF2F8C /* ListItemTableViewController.swift in Sources */,
 				D95C8BF62181259B00EA49B1 /* Image.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
