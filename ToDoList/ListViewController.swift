@@ -5,10 +5,10 @@
 // Do not crop image, save in image model the original image, zoom level, and center, view or scrollview
 //TODO: - fix notes so has border and way to dismiss keyboard
 //      - find images to use for priority
-//      1. - convert Edit/Add view into a scroll view
 //      - implement missing elements
 //      - register gestures to allow for zooming and panning of an image
 //      - add Image.swift class and have that information persist
+//      - implement showing and hiding of elements
 //
 //  Created by Melanie MacDonald on 2018-10-15.
 //  Copyright © 2018 Melanie MacDonald. All rights reserved.
@@ -25,6 +25,8 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var dateEnteredLabel: UILabel!
+    @IBOutlet weak var dateEnteredValue: UILabel!
     
     
     // This value is either passed by 'ListItemTableViewController' in 'prepare(for:sender:)' or constructed as part of adding a new meal
@@ -41,6 +43,9 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             titleTextField.text = listItem.title
             pictureImageView.image = listItem.photo
             notesTextView.text = listItem.notes
+            doHideDateEntered(flag: false)
+        } else {
+            doHideDateEntered(flag: true)
         }
         
         // Enable the save button only if there is a valid title
@@ -189,6 +194,11 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         // Disable the Save button if the text field is empty
         let text = titleTextField.text ?? ""
         saveButton.isEnabled = !text.isEmpty
+    }
+    
+    private func doHideDateEntered(flag: Bool) {
+        dateEnteredLabel.isHidden = flag
+        dateEnteredValue.isHidden = flag
     }
 }
 

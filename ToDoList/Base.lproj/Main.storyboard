@@ -130,6 +130,8 @@
                     </navigationItem>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
+                        <outlet property="dateEnteredLabel" destination="ooA-sC-wP4" id="0yc-x5-8cV"/>
+                        <outlet property="dateEnteredValue" destination="fjc-zm-EzO" id="maD-LH-9iV"/>
                         <outlet property="notesTextView" destination="Ire-am-X6h" id="KaX-MS-iTz"/>
                         <outlet property="pictureImageView" destination="ybx-e8-EF0" id="njm-kj-hql"/>
                         <outlet property="saveButton" destination="Jjx-ea-ulb" id="ybJ-Oj-9S5"/>
