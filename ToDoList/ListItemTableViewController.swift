@@ -162,7 +162,7 @@ class ListItemTableViewController: UITableViewController {
     }
     
     private func saveItems() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(saveItems(), toFile: ListItem.ArchiveURL.path)
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(listItems, toFile: ListItem.ArchiveURL.path)
         
         if isSuccessfulSave {
             os_log("Items successfully save", log: OSLog.default, type: .debug)
