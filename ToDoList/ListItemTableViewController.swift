@@ -28,8 +28,6 @@ class ListItemTableViewController: UITableViewController {
             // Load sample data
             loadSampleItems()
         }
-        
-        loadSampleItems()
     }
 
     // MARK: - Table view data source
