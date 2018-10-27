@@ -3,6 +3,12 @@
 //  ToDoList
 //
 // Do not crop image, save in image model the original image, zoom level, and center, view or scrollview
+//TODO: - fix notes so has border and way to dismiss keyboard
+//      - find images to use for priority
+//      1. - convert Edit/Add view into a scroll view
+//      - implement missing elements
+//      - register gestures to allow for zooming and panning of an image
+//      - add Image.swift class and have that information persist
 //
 //  Created by Melanie MacDonald on 2018-10-15.
 //  Copyright © 2018 Melanie MacDonald. All rights reserved.
