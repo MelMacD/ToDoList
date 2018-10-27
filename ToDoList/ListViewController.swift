@@ -80,6 +80,9 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     }
     
     //MARK: Navigation
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
     
     // Configures a view controller before it's presented
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

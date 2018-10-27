@@ -84,7 +84,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Item" id="wLd-Lr-gLC">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="4VD-Et-ThY"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="4VD-Et-ThY">
+                            <connections>
+                                <action selector="cancel:" destination="BYZ-38-t0r" id="GWw-B8-fMV"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="Jjx-ea-ulb">
                             <connections>
                                 <segue destination="e1u-aU-dF9" kind="unwind" unwindAction="unwindToItemListWithSender:" id="IBc-eS-9Jg"/>
