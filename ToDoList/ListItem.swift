@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import os.log
 
-class ListItem {
+class ListItem: NSObject, NSCoding {
     
     //MARK: Properties
     
@@ -18,6 +19,19 @@ class ListItem {
     //var dueDate: Date// this might need to be a generic type
     //var dateEntered: Date
     //var priority: Selector// this might ned a different type as well
+    
+    //MARK: Archiving Paths
+    
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("listItems")
+    
+    //MARK: Types
+    
+    struct PropertyKey {
+        static let title = "title"
+        static let photo = "photo"
+        static let notes = "notes"
+    }
     
     //MARK: Initialization
     
@@ -31,5 +45,28 @@ class ListItem {
         self.title = title
         self.photo = photo
         self.notes = notes
+    }
+    
+    //MARK: NSCoding
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(title, forKey: PropertyKey.title)
+        aCoder.encode(photo, forKey: PropertyKey.photo)
+        aCoder.encode(notes, forKey: PropertyKey.notes)
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder){
+        // Title is required
+        guard let title = aDecoder.decodeObject(forKey: PropertyKey.title) as? String else {
+            os_log("Unable to decode the name for a ListItem object", log: OSLog.default, type: .debug)
+            return nil
+        }
+        
+        // Because photo and notes are optional, use conditional cast
+        let photo = aDecoder.decodeObject(forKey: PropertyKey.photo) as? UIImage
+        let notes = aDecoder.decodeObject(forKey: PropertyKey.notes) as? String
+        
+        // Must call desginated initializer
+        self.init(title: title, photo: photo, notes: notes!)
     }
 }

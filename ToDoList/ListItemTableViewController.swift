@@ -21,7 +21,15 @@ class ListItemTableViewController: UITableViewController {
         // Display an Edit button in the navigation bar for this view controller.
         navigationItem.leftBarButtonItem = editButtonItem
         
-        loadSampleMeals()
+        if let savedItems = loadItems() {
+            listItems += savedItems
+        }
+        else {
+            // Load sample data
+            loadSampleItems()
+        }
+        
+        loadSampleItems()
     }
 
     // MARK: - Table view data source
@@ -67,6 +75,7 @@ class ListItemTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             listItems.remove(at: indexPath.row)
+            saveItems()
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -135,11 +144,13 @@ class ListItemTableViewController: UITableViewController {
                 listItems.append(listItem)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
+            // Save the items
+            saveItems()
         }
     }
     //MARK: Private Methods
     
-    private func loadSampleMeals() {
+    private func loadSampleItems() {
         let photo = UIImage(named: "defaultPhoto")
         
         guard let listItem1 = ListItem(title: "Default item", photo: photo, notes: "Here are some notes") else {
@@ -150,5 +161,19 @@ class ListItemTableViewController: UITableViewController {
             fatalError("Unable to instantiate list item2")
         }
         listItems += [listItem1, listItem2]
+    }
+    
+    private func saveItems() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(saveItems(), toFile: ListItem.ArchiveURL.path)
+        
+        if isSuccessfulSave {
+            os_log("Items successfully save", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save items", log: OSLog.default, type: .error)
+        }
+    }
+    
+    private func loadItems() -> [ListItem]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: ListItem.ArchiveURL.path) as? [ListItem]
     }
 }
