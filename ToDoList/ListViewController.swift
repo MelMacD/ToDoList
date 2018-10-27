@@ -28,7 +28,7 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         super.viewDidLoad()
         titleTextField.delegate = self
         notesTextView.delegate = self
-        
+
         // Set up views if editing an existing Item.
         if let listItem = listItem {
             navigationItem.title = listItem.title
@@ -88,8 +88,19 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     }
     
     //MARK: Navigation
-    @IBAction func cancel(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+    @IBAction func cancel(_ sender: Any) {
+        // Depending on style of presentation (modal or push), this view controller needs to be dismissed differently
+        let isPresentingInAddItemMode = presentingViewController is UINavigationController
+        
+        if isPresentingInAddItemMode {
+            dismiss(animated: true, completion: nil)
+        }
+        else if let owningNavigationController = navigationController {
+            owningNavigationController.popViewController(animated: true)
+        }
+        else {
+            fatalError("The ListViewController is not inside a navigation controller")
+        }
     }
     
     // Configures a view controller before it's presented

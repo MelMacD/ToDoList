@@ -86,7 +86,7 @@
                     <navigationItem key="navigationItem" title="New Item" id="wLd-Lr-gLC">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="4VD-Et-ThY">
                             <connections>
-                                <action selector="cancel:" destination="BYZ-38-t0r" id="GWw-B8-fMV"/>
+                                <action selector="cancel:" destination="BYZ-38-t0r" id="bJG-DS-fa1"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="Jjx-ea-ulb">

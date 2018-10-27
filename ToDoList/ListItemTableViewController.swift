@@ -123,11 +123,19 @@ class ListItemTableViewController: UITableViewController {
 
     //MARK: Actions
     @IBAction func unwindToItemList(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? ListViewController, let listItem = sourceViewController.listItem {
-            // Add a new item
-            let newIndexPath = IndexPath(row: listItems.count, section: 0)
-            listItems.append(listItem)
-            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        if let sourceViewController = sender.source as? ListViewController, let
+            listItem = sourceViewController.listItem {
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                // Update an existing item
+                listItems[selectedIndexPath.row] = listItem
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            }
+            else {
+                // Add a new item
+                let newIndexPath = IndexPath(row: listItems.count, section: 0)
+                listItems.append(listItem)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
         }
     }
     //MARK: Private Methods
