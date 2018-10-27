@@ -3,7 +3,7 @@
 //  ToDoList
 //
 // Do not crop image, save in image model the original image, zoom level, and center, view or scrollview
-//TODO: - fix notes so has border and way to dismiss keyboard
+//TODO: - fix notes so has way to dismiss keyboard
 //      - find images to use for priority
 //      - implement missing elements
 //      - register gestures to allow for zooming and panning of an image
@@ -17,7 +17,7 @@
 import UIKit
 import os.log
 
-class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, UINavigationControllerDelegate {
+class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
 
     //MARK: Properties
     
@@ -27,6 +27,13 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var dateEnteredLabel: UILabel!
     @IBOutlet weak var dateEnteredValue: UILabel!
+    // Outlets to control zooming and panning of an image
+    @IBOutlet weak var imageScrollView: UIScrollView!
+    @IBOutlet weak var imageViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewBottomConstraint: NSLayoutConstraint!
+    
     
     
     // This value is either passed by 'ListItemTableViewController' in 'prepare(for:sender:)' or constructed as part of adding a new meal
@@ -37,9 +44,16 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         titleTextField.delegate = self
         notesTextView.delegate = self
         
+        // Create a black border around the notes text view
         notesTextView.layer.borderWidth = 1
         notesTextView.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
 
+        // Set zooming constraints
+        imageScrollView.zoomScale = 1.0
+        imageScrollView.minimumZoomScale = 1.0
+        imageScrollView.maximumZoomScale = 6.0
+        imageScrollView.delegate = self
+        
         // Set up views if editing an existing Item.
         if let listItem = listItem {
             navigationItem.title = listItem.title
@@ -140,9 +154,6 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         showAlertToPickImage()
     }
     
-    @IBAction func scaleImageWhenPinched(_ sender: UIPinchGestureRecognizer) {
-    }
-    
     //MARK: Custom Functions
     
     func selectImageFromLibrary() {
@@ -203,5 +214,8 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         dateEnteredLabel.isHidden = flag
         dateEnteredValue.isHidden = flag
     }
+    
+    func viewForZooming(in imageScrollView: UIScrollView) -> UIView? {
+        return pictureImageView
+    }
 }
-

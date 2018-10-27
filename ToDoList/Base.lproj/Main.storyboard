@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="65" width="375" height="935"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9sc-MI-tBS">
-                                        <rect key="frame" x="10" y="0.0" width="355" height="861"/>
+                                        <rect key="frame" x="10" y="0.0" width="355" height="896"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKs-pM-eyq">
                                                 <rect key="frame" x="158.5" y="0.0" width="38" height="20.5"/>
@@ -42,25 +42,38 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="ybx-e8-EF0">
-                                                <rect key="frame" x="17.5" y="95" width="320" height="320"/>
-                                                <gestureRecognizers/>
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7aF-eT-2lf">
+                                                <rect key="frame" x="0.0" y="95" width="355" height="355"/>
+                                                <subviews>
+                                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="355" placeholderIntrinsicHeight="355" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="ybx-e8-EF0">
+                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="355"/>
+                                                        <gestureRecognizers/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="ybx-e8-EF0" secondAttribute="height" multiplier="1:1" id="2kA-OQ-q08"/>
+                                                            <constraint firstAttribute="height" constant="355" id="BuL-Ch-MA1"/>
+                                                            <constraint firstAttribute="width" constant="355" id="tUj-hG-hwP"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="Gjk-Yb-HpL" appends="YES" id="eGe-xe-H9P"/>
+                                                        </connections>
+                                                    </imageView>
+                                                </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="ybx-e8-EF0" secondAttribute="height" multiplier="1:1" id="2kA-OQ-q08"/>
+                                                    <constraint firstItem="ybx-e8-EF0" firstAttribute="leading" secondItem="7aF-eT-2lf" secondAttribute="leading" id="3ei-xS-tCr"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ybx-e8-EF0" secondAttribute="trailing" id="WJV-Yg-E6y"/>
+                                                    <constraint firstItem="ybx-e8-EF0" firstAttribute="top" secondItem="7aF-eT-2lf" secondAttribute="top" id="cNX-Op-pX8"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ybx-e8-EF0" secondAttribute="bottom" id="lXs-GT-YUk"/>
+                                                    <constraint firstAttribute="width" secondItem="7aF-eT-2lf" secondAttribute="height" multiplier="1:1" id="nqV-fI-9hn"/>
                                                 </constraints>
-                                                <connections>
-                                                    <outletCollection property="gestureRecognizers" destination="xdV-rW-5IQ" appends="YES" id="EQQ-Bh-KAM"/>
-                                                    <outletCollection property="gestureRecognizers" destination="Gjk-Yb-HpL" appends="YES" id="eGe-xe-H9P"/>
-                                                </connections>
-                                            </imageView>
+                                            </scrollView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1Q-GF-aDA">
-                                                <rect key="frame" x="152.5" y="423" width="50.5" height="20.5"/>
+                                                <rect key="frame" x="152.5" y="458" width="50.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write a note" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ire-am-X6h">
-                                                <rect key="frame" x="0.0" y="451.5" width="355" height="100"/>
+                                                <rect key="frame" x="0.0" y="486.5" width="355" height="100"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="355" id="BLa-zw-NAF"/>
@@ -70,32 +83,34 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date/time Entered:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooA-sC-wP4">
-                                                <rect key="frame" x="106" y="559.5" width="143.5" height="20.5"/>
+                                                <rect key="frame" x="106" y="594.5" width="143.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 January, 1970" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjc-zm-EzO">
-                                                <rect key="frame" x="118.5" y="588" width="118" height="20.5"/>
+                                                <rect key="frame" x="118.5" y="623" width="118" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date/time Due:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHI-Kv-cJG">
-                                                <rect key="frame" x="120.5" y="616.5" width="114.5" height="20.5"/>
+                                                <rect key="frame" x="120.5" y="651.5" width="114.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1X-HD-kSb">
-                                                <rect key="frame" x="17.5" y="645" width="320" height="216"/>
+                                                <rect key="frame" x="17.5" y="680" width="320" height="216"/>
                                             </pickerView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="vdP-Up-J9D" secondAttribute="trailing" id="4q8-1v-k3i"/>
                                             <constraint firstItem="Ire-am-X6h" firstAttribute="top" secondItem="K1Q-GF-aDA" secondAttribute="bottom" constant="8" id="doh-N5-KHZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="7aF-eT-2lf" secondAttribute="trailing" id="kcR-ro-cDa"/>
                                             <constraint firstItem="Ire-am-X6h" firstAttribute="leading" secondItem="9sc-MI-tBS" secondAttribute="leading" id="mTP-sI-w2T"/>
                                             <constraint firstAttribute="trailing" secondItem="Ire-am-X6h" secondAttribute="trailing" id="mrE-oE-aM4"/>
+                                            <constraint firstItem="7aF-eT-2lf" firstAttribute="leading" secondItem="9sc-MI-tBS" secondAttribute="leading" id="w8b-yr-UcH"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -132,6 +147,11 @@
                     <connections>
                         <outlet property="dateEnteredLabel" destination="ooA-sC-wP4" id="0yc-x5-8cV"/>
                         <outlet property="dateEnteredValue" destination="fjc-zm-EzO" id="maD-LH-9iV"/>
+                        <outlet property="imageScrollView" destination="7aF-eT-2lf" id="Tky-06-Bfv"/>
+                        <outlet property="imageViewBottomConstraint" destination="lXs-GT-YUk" id="hkf-jC-2uG"/>
+                        <outlet property="imageViewLeadingConstraint" destination="3ei-xS-tCr" id="cUx-5f-PR3"/>
+                        <outlet property="imageViewTopConstraint" destination="cNX-Op-pX8" id="VTr-Ld-WnX"/>
+                        <outlet property="imageViewTrailingConstraint" destination="WJV-Yg-E6y" id="weM-Vp-MFD"/>
                         <outlet property="notesTextView" destination="Ire-am-X6h" id="KaX-MS-iTz"/>
                         <outlet property="pictureImageView" destination="ybx-e8-EF0" id="njm-kj-hql"/>
                         <outlet property="saveButton" destination="Jjx-ea-ulb" id="ybJ-Oj-9S5"/>
@@ -145,11 +165,6 @@
                         <action selector="selectImage:" destination="BYZ-38-t0r" id="Pv5-c8-R2Q"/>
                     </connections>
                 </tapGestureRecognizer>
-                <pinchGestureRecognizer id="xdV-rW-5IQ">
-                    <connections>
-                        <action selector="scaleImageWhenPinched:" destination="BYZ-38-t0r" id="2J5-6i-Eqt"/>
-                    </connections>
-                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2012" y="133.13343328335833"/>
         </scene>
