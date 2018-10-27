@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--List View Controller-->
+        <!--New Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ListViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
@@ -83,6 +83,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="New Item" id="wLd-Lr-gLC">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="4VD-Et-ThY"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="Jjx-ea-ulb"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="notesTextView" destination="Ire-am-X6h" id="KaX-MS-iTz"/>
                         <outlet property="pictureImageView" destination="ybx-e8-EF0" id="njm-kj-hql"/>
@@ -101,7 +105,7 @@
                     </connections>
                 </pinchGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1072.8" y="133.5832083958021"/>
+            <point key="canvasLocation" x="2012" y="133.5832083958021"/>
         </scene>
         <!--To-Do List-->
         <scene sceneID="7Jj-U3-6UB">
@@ -159,7 +163,7 @@
                     <navigationItem key="navigationItem" title="To-Do List" id="btY-KY-bvn">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="TvU-pN-0SS">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="TDB-uA-XLD"/>
+                                <segue destination="Wca-wn-pMi" kind="presentation" identifier="addItem" id="TDB-uA-XLD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -185,6 +189,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xLU-5w-C1v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-751.20000000000005" y="133.5832083958021"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jA6-mz-E84">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wca-wn-pMi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="n9n-sd-6kE">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="6VX-vG-Vvw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cCd-hu-xea" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1072.8" y="133.5832083958021"/>
         </scene>
     </scenes>
     <resources>

@@ -18,7 +18,10 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var notesTextView: UITextView!
+    @IBOutlet weak var saveButton: UIBarButtonItem
     
+    // This value is either passed by 'ListItemTableViewController' in 'prepare(for:sender:)' or constructed as part of adding a new meal
+    var listItem: ListItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
