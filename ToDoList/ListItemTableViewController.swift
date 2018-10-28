@@ -60,9 +60,10 @@ class ListItemTableViewController: UITableViewController {
         
         cell.titleLabel.text = listItem.title
         cell.pictureImageView.image = listItem.photo.photo
-        cell.pictureImageView.center = CGPoint(x: listItem.photo.centerX, y: listItem.photo.centerY)
         cell.imageScrollView.zoomScale = listItem.photo.scaleAmount
-
+        cell.imageScrollView.contentOffset.x = listItem.photo.centerX
+        cell.imageScrollView.contentOffset.y = listItem.photo.centerY
+        
         return cell
     }
     

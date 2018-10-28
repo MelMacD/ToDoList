@@ -40,6 +40,9 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     let dateDueOptions = ["", "Select Date", "Immediately"]
     let priorityOptions = ["Low", "Medium", "High"]
     
+    var changeInX = 0.0
+    var changeInY = 0.0
+    
     // This value is either passed by 'ListItemTableViewController' in 'prepare(for:sender:)' or constructed as part of adding a new meal
     var listItem: ListItem?
     
@@ -68,8 +71,9 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             navigationItem.title = listItem.title
             titleTextField.text = listItem.title
             pictureImageView.image = listItem.photo.photo
-            pictureImageView.center = CGPoint(x: listItem.photo.centerX, y: listItem.photo.centerY)
             imageScrollView.zoomScale = listItem.photo.scaleAmount
+            imageScrollView.contentOffset.x = listItem.photo.centerX
+            imageScrollView.contentOffset.y = listItem.photo.centerY
             notesTextView.text = listItem.notes
             dateEnteredValue.text = listItem.dateEntered
             doHideDateEntered(flag: false)
@@ -282,16 +286,23 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         datePicker.isHidden = flag
     }
     
-    // This isn't quite working, TODO
     func determineCenter() -> CGPoint{
-        var newX = CGFloat(0.0)
-        var newY = CGFloat(0.0)
+        var newX = 0.0
+        var newY = 0.0
         if (imageScrollView.contentOffset.x > 0) {
-            newX = (imageScrollView.contentOffset.x) * (1 / imageScrollView.zoomScale)
+            newX = Double((imageScrollView.contentOffset.x))
         }
         if (imageScrollView.contentOffset.y > 0) {
-            newY = (imageScrollView.contentOffset.y) * (1 / imageScrollView.zoomScale)
+            newY = Double((imageScrollView.contentOffset.y))
         }
         return CGPoint(x: newX, y: newY)
     }
 }
+// TODO: Fix weird navigation
+/*
+ 1. Save priority and display respective image
+ 2. Save due date and display relevant information
+ 3. Implement sorting for table
+ 4. Dismiss keyboard for notes
+ Low Priority: fix center and zoom preservation for tabbed view
+ */
