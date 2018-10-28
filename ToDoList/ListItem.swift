@@ -17,7 +17,7 @@ class ListItem: NSObject, NSCoding {
     var photo: UIImage? // change this to image object later
     var notes: String
     //var dueDate: Date// this might need to be a generic type
-    //var dateEntered: Date
+    var dateEntered: String
     //var priority: Selector// this might ned a different type as well
     
     //MARK: Archiving Paths
@@ -31,11 +31,12 @@ class ListItem: NSObject, NSCoding {
         static let title = "title"
         static let photo = "photo"
         static let notes = "notes"
+        static let dateEntered = "dateEntered"
     }
     
     //MARK: Initialization
     
-    init?(title: String, photo: UIImage?, notes: String) {
+    init?(title: String, photo: UIImage?, notes: String, dateEntered: String) {
         // Initialization should fail under certain conditions
         guard !title.isEmpty else {
             return nil
@@ -45,6 +46,7 @@ class ListItem: NSObject, NSCoding {
         self.title = title
         self.photo = photo
         self.notes = notes
+        self.dateEntered = dateEntered
     }
     
     //MARK: NSCoding
@@ -53,6 +55,7 @@ class ListItem: NSObject, NSCoding {
         aCoder.encode(title, forKey: PropertyKey.title)
         aCoder.encode(photo, forKey: PropertyKey.photo)
         aCoder.encode(notes, forKey: PropertyKey.notes)
+        aCoder.encode(dateEntered, forKey: PropertyKey.dateEntered)
     }
     
     required convenience init?(coder aDecoder: NSCoder){
@@ -61,12 +64,16 @@ class ListItem: NSObject, NSCoding {
             os_log("Unable to decode the name for a ListItem object", log: OSLog.default, type: .debug)
             return nil
         }
-        
+        // Date entered is required
+        guard let dateEntered = aDecoder.decodeObject(forKey: PropertyKey.dateEntered) as? String else {
+            os_log("Unable to decode the date entered for a ListItem object", log: OSLog.default, type: .debug)
+            return nil
+        }
         // Because photo and notes are optional, use conditional cast
         let photo = aDecoder.decodeObject(forKey: PropertyKey.photo) as? UIImage
         let notes = aDecoder.decodeObject(forKey: PropertyKey.notes) as? String
         
         // Must call desginated initializer
-        self.init(title: title, photo: photo, notes: notes!)
+        self.init(title: title, photo: photo, notes: notes!, dateEntered: dateEntered)
     }
 }

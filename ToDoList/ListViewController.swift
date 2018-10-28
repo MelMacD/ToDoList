@@ -60,6 +60,7 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             titleTextField.text = listItem.title
             pictureImageView.image = listItem.photo
             notesTextView.text = listItem.notes
+            dateEnteredValue.text = listItem.dateEntered
             doHideDateEntered(flag: false)
         } else {
             doHideDateEntered(flag: true)
@@ -144,9 +145,15 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         let title = titleTextField.text ?? ""
         let photo = pictureImageView.image
         let notes = notesTextView.text ?? ""
+        var dateEntered = dateEnteredValue.text ?? ""
+        let isPresentingInAddItemMode = presentingViewController is UINavigationController
+        
+        if isPresentingInAddItemMode {
+            dateEntered = convertDateToString(date: Date())
+        }
         
         // Set the meal to be passed to ListItemTableViewController after the unwind seque
-        listItem = ListItem(title: title, photo: photo, notes: notes)
+        listItem = ListItem(title: title, photo: photo, notes: notes, dateEntered: dateEntered)
     }
     
     //MARK: Actions
@@ -217,5 +224,14 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     
     func viewForZooming(in imageScrollView: UIScrollView) -> UIView? {
         return pictureImageView
+    }
+    
+    func convertDateToString(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .short
+        
+        dateFormatter.locale = Locale(identifier: "en_US")
+        return dateFormatter.string(from: date)
     }
 }
