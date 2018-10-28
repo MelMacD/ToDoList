@@ -147,6 +147,15 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         }
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if (pickerView.tag == 1 && row == 1){
+            doHideDatePicker(flag: false)
+        }
+        else {
+            doHideDatePicker(flag: true)
+        }
+    }
+    
     //MARK: Navigation
     @IBAction func cancel(_ sender: Any) {
         // Depending on style of presentation (modal or push), this view controller needs to be dismissed differently
@@ -264,5 +273,9 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         
         dateFormatter.locale = Locale(identifier: "en_US")
         return dateFormatter.string(from: date)
+    }
+    
+    func doHideDatePicker(flag: Bool) {
+        datePicker.isHidden = flag
     }
 }
