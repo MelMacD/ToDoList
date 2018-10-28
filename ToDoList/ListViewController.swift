@@ -27,6 +27,7 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var dateEnteredLabel: UILabel!
     @IBOutlet weak var dateEnteredValue: UILabel!
+    @IBOutlet weak var datePicker: UIDatePicker!
     // Outlets to control zooming and panning of an image
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var imageViewLeadingConstraint: NSLayoutConstraint!

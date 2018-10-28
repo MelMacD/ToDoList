@@ -15,14 +15,14 @@
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ListViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IVZ-fv-WT3">
-                                <rect key="frame" x="0.0" y="65" width="375" height="935"/>
+                                <rect key="frame" x="0.0" y="65" width="375" height="1185"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9sc-MI-tBS">
-                                        <rect key="frame" x="10" y="0.0" width="355" height="896"/>
+                                        <rect key="frame" x="10" y="0.0" width="355" height="1148.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKs-pM-eyq">
                                                 <rect key="frame" x="158.5" y="0.0" width="38" height="20.5"/>
@@ -103,6 +103,21 @@
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1X-HD-kSb">
                                                 <rect key="frame" x="17.5" y="680" width="320" height="216"/>
                                             </pickerView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Priority" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJo-EN-hwy">
+                                                <rect key="frame" x="150.5" y="904" width="54.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOE-BY-zar">
+                                                <rect key="frame" x="17.5" y="932.5" width="320" height="216"/>
+                                            </pickerView>
+                                            <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="eHI-FE-cds">
+                                                <rect key="frame" x="17.5" y="1148.5" width="320" height="0.0"/>
+                                                <date key="date" timeIntervalSinceReferenceDate="562378632.34519899">
+                                                    <!--2018-10-28 00:17:12 +0000-->
+                                                </date>
+                                            </datePicker>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="vdP-Up-J9D" secondAttribute="trailing" id="4q8-1v-k3i"/>
@@ -143,10 +158,11 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <size key="freeformSize" width="375" height="1000"/>
+                    <size key="freeformSize" width="375" height="1250"/>
                     <connections>
                         <outlet property="dateEnteredLabel" destination="ooA-sC-wP4" id="0yc-x5-8cV"/>
                         <outlet property="dateEnteredValue" destination="fjc-zm-EzO" id="maD-LH-9iV"/>
+                        <outlet property="datePicker" destination="eHI-FE-cds" id="nrk-qu-Rx8"/>
                         <outlet property="imageScrollView" destination="7aF-eT-2lf" id="Tky-06-Bfv"/>
                         <outlet property="imageViewBottomConstraint" destination="lXs-GT-YUk" id="hkf-jC-2uG"/>
                         <outlet property="imageViewLeadingConstraint" destination="3ei-xS-tCr" id="cUx-5f-PR3"/>
