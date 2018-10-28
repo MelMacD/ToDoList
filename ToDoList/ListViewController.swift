@@ -6,8 +6,8 @@
 //TODO: - fix notes so has way to dismiss keyboard
 //      - register gestures to allow for zooming and panning of an image - test
 //      - add Image.swift class and have that information persist
-//      - implement showing and hiding of elements
-//      - fix sizing of the pickers, they look weird
+//      1. implement priority and images
+//      2. implement saving and showing date/time due
 //
 //  Created by Melanie MacDonald on 2018-10-15.
 //  Copyright © 2018 Melanie MacDonald. All rights reserved.

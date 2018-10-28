@@ -6,4 +6,23 @@
 //  Copyright © 2018 Melanie MacDonald. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class Image {
+    
+    //MARK: Properties
+    
+    var photo: UIImage
+    var scaleAmount: Int
+    var center: Int
+    
+    //MARK: Initialization
+    
+    init?(photo: UIImage, scaleAmount: Int, center: Int) {
+        
+        // Initialize with given values
+        self.photo = photo
+        self.scaleAmount = scaleAmount
+        self.center = center
+    }
+}
