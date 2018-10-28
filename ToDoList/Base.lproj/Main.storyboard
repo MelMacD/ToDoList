@@ -100,7 +100,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1X-HD-kSb">
+                                            <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1X-HD-kSb">
                                                 <rect key="frame" x="17.5" y="680" width="320" height="216"/>
                                             </pickerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Priority" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJo-EN-hwy">
@@ -109,7 +109,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOE-BY-zar">
+                                            <pickerView tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOE-BY-zar">
                                                 <rect key="frame" x="17.5" y="932.5" width="320" height="216"/>
                                             </pickerView>
                                             <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="eHI-FE-cds">
@@ -160,6 +160,7 @@
                     </navigationItem>
                     <size key="freeformSize" width="375" height="1250"/>
                     <connections>
+                        <outlet property="dateDuePicker" destination="O1X-HD-kSb" id="YrU-OD-xge"/>
                         <outlet property="dateEnteredLabel" destination="ooA-sC-wP4" id="0yc-x5-8cV"/>
                         <outlet property="dateEnteredValue" destination="fjc-zm-EzO" id="maD-LH-9iV"/>
                         <outlet property="datePicker" destination="eHI-FE-cds" id="nrk-qu-Rx8"/>
@@ -170,6 +171,7 @@
                         <outlet property="imageViewTrailingConstraint" destination="WJV-Yg-E6y" id="weM-Vp-MFD"/>
                         <outlet property="notesTextView" destination="Ire-am-X6h" id="KaX-MS-iTz"/>
                         <outlet property="pictureImageView" destination="ybx-e8-EF0" id="njm-kj-hql"/>
+                        <outlet property="priorityPicker" destination="dOE-BY-zar" id="WR2-kp-kEa"/>
                         <outlet property="saveButton" destination="Jjx-ea-ulb" id="ybJ-Oj-9S5"/>
                         <outlet property="titleTextField" destination="vdP-Up-J9D" id="Yt6-vr-V7c"/>
                     </connections>

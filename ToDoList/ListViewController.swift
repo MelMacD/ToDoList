@@ -4,11 +4,10 @@
 //
 // Do not crop image, save in image model the original image, zoom level, and center, view or scrollview
 //TODO: - fix notes so has way to dismiss keyboard
-//      - find images to use for priority
-//      - implement missing elements
-//      - register gestures to allow for zooming and panning of an image
+//      - register gestures to allow for zooming and panning of an image - test
 //      - add Image.swift class and have that information persist
 //      - implement showing and hiding of elements
+//      - fix sizing of the pickers, they look weird
 //
 //  Created by Melanie MacDonald on 2018-10-15.
 //  Copyright © 2018 Melanie MacDonald. All rights reserved.
@@ -17,7 +16,7 @@
 import UIKit
 import os.log
 
-class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
+class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIScrollViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     //MARK: Properties
     
@@ -27,7 +26,9 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var dateEnteredLabel: UILabel!
     @IBOutlet weak var dateEnteredValue: UILabel!
+    @IBOutlet weak var dateDuePicker: UIPickerView!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var priorityPicker: UIPickerView!
     // Outlets to control zooming and panning of an image
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var imageViewLeadingConstraint: NSLayoutConstraint!
@@ -35,7 +36,8 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet weak var imageViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageViewBottomConstraint: NSLayoutConstraint!
     
-    
+    let dateDueOptions = ["", "Select Date", "Immediately"]
+    let priorityOptions = ["Low", "Medium", "High"]
     
     // This value is either passed by 'ListItemTableViewController' in 'prepare(for:sender:)' or constructed as part of adding a new meal
     var listItem: ListItem?
@@ -44,6 +46,11 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         super.viewDidLoad()
         titleTextField.delegate = self
         notesTextView.delegate = self
+        dateDuePicker.delegate = self
+        dateDuePicker.dataSource = self
+        priorityPicker.delegate = self
+        priorityPicker.dataSource = self
+        
         
         // Create a black border around the notes text view
         notesTextView.layer.borderWidth = 1
@@ -115,6 +122,29 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         pictureImageView.image = selectedImage
         
         dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: Picker Handlers
+    func numberOfComponents(in dateDuePicker: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if (pickerView.tag == 1) {
+            return dateDueOptions.count
+        }
+        else {
+            return priorityOptions.count
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if (pickerView.tag == 1){
+            return "\(dateDueOptions[row])"
+        }
+        else{
+            return "\(priorityOptions[row])"
+        }
     }
     
     //MARK: Navigation
