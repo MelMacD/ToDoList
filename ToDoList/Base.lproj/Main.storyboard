@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="65" width="375" height="1185"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9sc-MI-tBS">
-                                        <rect key="frame" x="10" y="0.0" width="355" height="1148.5"/>
+                                        <rect key="frame" x="10" y="0.0" width="355" height="906.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKs-pM-eyq">
                                                 <rect key="frame" x="158.5" y="0.0" width="38" height="20.5"/>
@@ -100,24 +100,50 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1X-HD-kSb">
-                                                <rect key="frame" x="17.5" y="680" width="320" height="216"/>
-                                            </pickerView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Priority" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJo-EN-hwy">
-                                                <rect key="frame" x="150.5" y="904" width="54.5" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <pickerView tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOE-BY-zar">
-                                                <rect key="frame" x="17.5" y="932.5" width="320" height="216"/>
-                                            </pickerView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kgK-sC-FVM">
+                                                <rect key="frame" x="0.0" y="680" width="355" height="90"/>
+                                                <subviews>
+                                                    <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1X-HD-kSb">
+                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="90"/>
+                                                    </pickerView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="O1X-HD-kSb" firstAttribute="leading" secondItem="kgK-sC-FVM" secondAttribute="leading" id="8ks-HQ-2Fi"/>
+                                                    <constraint firstAttribute="height" constant="90" id="8nH-sN-OTW"/>
+                                                    <constraint firstItem="O1X-HD-kSb" firstAttribute="top" secondItem="kgK-sC-FVM" secondAttribute="top" id="Uqi-gl-QLe"/>
+                                                    <constraint firstAttribute="trailing" secondItem="O1X-HD-kSb" secondAttribute="trailing" id="Yot-pi-l6G"/>
+                                                    <constraint firstAttribute="bottom" secondItem="O1X-HD-kSb" secondAttribute="bottom" id="dWx-bS-HwP"/>
+                                                </constraints>
+                                            </view>
                                             <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="eHI-FE-cds">
-                                                <rect key="frame" x="17.5" y="1148.5" width="320" height="0.0"/>
+                                                <rect key="frame" x="17.5" y="774" width="320" height="0.0"/>
                                                 <date key="date" timeIntervalSinceReferenceDate="562378632.34519899">
                                                     <!--2018-10-28 00:17:12 +0000-->
                                                 </date>
                                             </datePicker>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Priority" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJo-EN-hwy">
+                                                <rect key="frame" x="150.5" y="778" width="54.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rGJ-QL-ygU">
+                                                <rect key="frame" x="0.0" y="806.5" width="355" height="100"/>
+                                                <subviews>
+                                                    <pickerView tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOE-BY-zar">
+                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="100"/>
+                                                    </pickerView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="dOE-BY-zar" secondAttribute="trailing" id="2OQ-rx-v2m"/>
+                                                    <constraint firstItem="dOE-BY-zar" firstAttribute="leading" secondItem="rGJ-QL-ygU" secondAttribute="leading" id="AhI-qd-K0C"/>
+                                                    <constraint firstItem="dOE-BY-zar" firstAttribute="top" secondItem="rGJ-QL-ygU" secondAttribute="top" id="pVN-hj-seP"/>
+                                                    <constraint firstAttribute="height" constant="100" id="tG5-H3-nTR"/>
+                                                    <constraint firstAttribute="bottom" secondItem="dOE-BY-zar" secondAttribute="bottom" id="uxD-h5-E4M"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="vdP-Up-J9D" secondAttribute="trailing" id="4q8-1v-k3i"/>
