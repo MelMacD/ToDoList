@@ -63,6 +63,7 @@ class ListItemTableViewController: UITableViewController {
         cell.imageScrollView.zoomScale = listItem.photo.scaleAmount
         cell.imageScrollView.contentOffset.x = listItem.photo.centerX
         cell.imageScrollView.contentOffset.y = listItem.photo.centerY
+        cell.priorityImageView.image = getImageForPriority(selection: listItem.priority)
         
         return cell
     }
@@ -159,11 +160,11 @@ class ListItemTableViewController: UITableViewController {
     private func loadSampleItems() {
         let photo = Image(photo: UIImage(named: "defaultPhoto")!, scaleAmount: 1.0, centerX: CGFloat(0.0), centerY: CGFloat(0.0))
         
-        guard let listItem1 = ListItem(title: "Default item", photo: photo!, notes: "Here are some notes", dateEntered: "1 January, 1970") else {
+        guard let listItem1 = ListItem(title: "Default item", photo: photo!, notes: "Here are some notes", dateEntered: "1 January, 1970", priority: 0) else {
             fatalError("Unable to instantiate list item1")
         }
         
-        guard let listItem2 = ListItem(title: "Default item2", photo: photo!, notes: "Here are some more notes", dateEntered: "1 January, 1970") else {
+        guard let listItem2 = ListItem(title: "Default item2", photo: photo!, notes: "Here are some more notes", dateEntered: "1 January, 1970", priority: 0) else {
             fatalError("Unable to instantiate list item2")
         }
         listItems += [listItem1, listItem2]
@@ -181,5 +182,17 @@ class ListItemTableViewController: UITableViewController {
     
     private func loadItems() -> [ListItem]? {
         return NSKeyedUnarchiver.unarchiveObject(withFile: ListItem.ArchiveURL.path) as? [ListItem]
+    }
+    
+    private func getImageForPriority(selection: Int) -> UIImage {
+        if selection == 0 {
+            return UIImage(named: "lowPriority")!
+        }
+        else if selection == 1 {
+            return UIImage(named: "mediumPriority")!
+        }
+        else {
+            return UIImage(named: "highPriority")!
+        }
     }
 }

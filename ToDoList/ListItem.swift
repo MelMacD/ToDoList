@@ -18,7 +18,7 @@ class ListItem: NSObject, NSCoding {
     var notes: String
     //var dueDate: Date// this might need to be a generic type
     var dateEntered: String
-    //var priority: Selector// this might ned a different type as well
+    var priority: Int// this might ned a different type as well
     
     //MARK: Archiving Paths
     
@@ -32,11 +32,12 @@ class ListItem: NSObject, NSCoding {
         static let photo = "photo"
         static let notes = "notes"
         static let dateEntered = "dateEntered"
+        static let priority = "priority"
     }
     
     //MARK: Initialization
     
-    init?(title: String, photo: Image, notes: String, dateEntered: String) {
+    init?(title: String, photo: Image, notes: String, dateEntered: String, priority: Int) {
         // Initialization should fail under certain conditions
         guard !title.isEmpty else {
             return nil
@@ -47,6 +48,7 @@ class ListItem: NSObject, NSCoding {
         self.photo = photo
         self.notes = notes
         self.dateEntered = dateEntered
+        self.priority = priority
     }
     
     //MARK: NSCoding
@@ -56,6 +58,7 @@ class ListItem: NSObject, NSCoding {
         photo.encode(with: aCoder)
         aCoder.encode(notes, forKey: PropertyKey.notes)
         aCoder.encode(dateEntered, forKey: PropertyKey.dateEntered)
+        aCoder.encode(priority, forKey: PropertyKey.priority)
     }
     
     required convenience init?(coder aDecoder: NSCoder){
@@ -73,7 +76,9 @@ class ListItem: NSObject, NSCoding {
 
         let notes = aDecoder.decodeObject(forKey: PropertyKey.notes) as? String
         
+        let priority = aDecoder.decodeObject(forKey: PropertyKey.priority) as? Int
+        
         // Must call desginated initializer
-        self.init(title: title, photo: photo, notes: notes!, dateEntered: dateEntered)
+        self.init(title: title, photo: photo, notes: notes!, dateEntered: dateEntered, priority: priority!)
     }
 }

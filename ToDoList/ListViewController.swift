@@ -40,9 +40,6 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     let dateDueOptions = ["", "Select Date", "Immediately"]
     let priorityOptions = ["Low", "Medium", "High"]
     
-    var changeInX = 0.0
-    var changeInY = 0.0
-    
     // This value is either passed by 'ListItemTableViewController' in 'prepare(for:sender:)' or constructed as part of adding a new meal
     var listItem: ListItem?
     
@@ -77,6 +74,7 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             notesTextView.text = listItem.notes
             dateEnteredValue.text = listItem.dateEntered
             doHideDateEntered(flag: false)
+            priorityPicker.selectRow(listItem.priority, inComponent: 0, animated: true)
         } else {
             doHideDateEntered(flag: true)
         }
@@ -198,9 +196,10 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         if isPresentingInAddItemMode {
             dateEntered = convertDateToString(date: Date())
         }
+        let priority = priorityPicker.selectedRow(inComponent: 0)
         
         // Set the meal to be passed to ListItemTableViewController after the unwind seque
-        listItem = ListItem(title: title, photo: photo!, notes: notes, dateEntered: dateEntered)
+        listItem = ListItem(title: title, photo: photo!, notes: notes, dateEntered: dateEntered, priority: priority)
     }
     
     //MARK: Actions
@@ -300,7 +299,6 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
 }
 // TODO: Fix weird navigation
 /*
- 1. Save priority and display respective image
  2. Save due date and display relevant information
  3. Implement sorting for table
  4. Dismiss keyboard for notes
