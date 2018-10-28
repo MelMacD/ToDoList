@@ -15,6 +15,7 @@ class ListItemTableViewCell: UITableViewCell {
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var priorityImageView: UIImageView!
+    @IBOutlet weak var imageScrollView: UIScrollView!
     
     
     override func awakeFromNib() {

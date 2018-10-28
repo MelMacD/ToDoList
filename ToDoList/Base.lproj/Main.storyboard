@@ -228,32 +228,61 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="7n1-c8-7uJ">
+                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RSA-Ct-HDL">
                                             <rect key="frame" x="0.0" y="0.0" width="99" height="99"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRb-p6-bcg">
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="7n1-c8-7uJ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="99" height="99"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="99" id="1pH-Xk-zOm"/>
+                                                <constraint firstItem="7n1-c8-7uJ" firstAttribute="top" secondItem="RSA-Ct-HDL" secondAttribute="top" id="2s6-VP-JKV"/>
+                                                <constraint firstAttribute="trailing" secondItem="7n1-c8-7uJ" secondAttribute="trailing" id="Bmx-zW-9tG"/>
+                                                <constraint firstItem="7n1-c8-7uJ" firstAttribute="leading" secondItem="RSA-Ct-HDL" secondAttribute="leading" id="Ihv-oo-ZkO"/>
+                                                <constraint firstAttribute="height" constant="99" id="N5Q-fF-vWd"/>
+                                                <constraint firstAttribute="bottom" secondItem="7n1-c8-7uJ" secondAttribute="bottom" id="cl7-b5-wUB"/>
+                                                <constraint firstItem="7n1-c8-7uJ" firstAttribute="centerY" secondItem="RSA-Ct-HDL" secondAttribute="centerY" id="d2p-HS-VzM"/>
+                                                <constraint firstItem="7n1-c8-7uJ" firstAttribute="centerX" secondItem="RSA-Ct-HDL" secondAttribute="centerX" id="sey-kZ-nn5"/>
+                                            </constraints>
+                                        </scrollView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRb-p6-bcg">
                                             <rect key="frame" x="107" y="11" width="252" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="252" id="BrR-1Q-zqc"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Due: 9 December, 2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZY-ux-QJO">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due: 9 December, 2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZY-ux-QJO">
                                             <rect key="frame" x="107" y="68" width="181" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Vw8-qc-Lnh">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Vw8-qc-Lnh">
                                             <rect key="frame" x="308" y="40" width="51" height="49"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="49" id="SlY-vb-5v9"/>
+                                                <constraint firstAttribute="width" constant="51" id="w3A-ka-MPg"/>
+                                            </constraints>
                                         </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="QZY-ux-QJO" firstAttribute="top" secondItem="tRb-p6-bcg" secondAttribute="bottom" constant="36" id="33K-mg-Pi2"/>
+                                        <constraint firstItem="QZY-ux-QJO" firstAttribute="bottom" secondItem="Vw8-qc-Lnh" secondAttribute="bottom" id="AD7-Sj-ECV"/>
+                                        <constraint firstItem="QZY-ux-QJO" firstAttribute="bottom" secondItem="oXb-eC-2Mh" secondAttribute="bottomMargin" id="H0h-81-rQp"/>
+                                        <constraint firstItem="Vw8-qc-Lnh" firstAttribute="leading" secondItem="QZY-ux-QJO" secondAttribute="trailing" constant="20" id="JKb-Vn-2ic"/>
+                                        <constraint firstItem="QZY-ux-QJO" firstAttribute="leading" secondItem="RSA-Ct-HDL" secondAttribute="trailing" constant="8" symbolic="YES" id="R8i-mq-pro"/>
+                                        <constraint firstItem="tRb-p6-bcg" firstAttribute="leading" secondItem="RSA-Ct-HDL" secondAttribute="trailing" constant="8" symbolic="YES" id="d4m-Ck-9nD"/>
+                                        <constraint firstItem="RSA-Ct-HDL" firstAttribute="leading" secondItem="oXb-eC-2Mh" secondAttribute="leading" id="hKJ-dq-p6x"/>
+                                        <constraint firstItem="RSA-Ct-HDL" firstAttribute="top" secondItem="oXb-eC-2Mh" secondAttribute="top" id="yuG-Ha-TD9"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="dueDateLabel" destination="QZY-ux-QJO" id="bOs-Kb-ZVN"/>
+                                    <outlet property="imageScrollView" destination="RSA-Ct-HDL" id="kNF-d9-p4y"/>
                                     <outlet property="pictureImageView" destination="7n1-c8-7uJ" id="q6l-9t-WG2"/>
                                     <outlet property="priorityImageView" destination="Vw8-qc-Lnh" id="7k7-Cd-XuH"/>
                                     <outlet property="titleLabel" destination="tRb-p6-bcg" id="HTg-7h-3ML"/>

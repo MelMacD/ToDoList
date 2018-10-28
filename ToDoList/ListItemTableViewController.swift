@@ -22,9 +22,14 @@ class ListItemTableViewController: UITableViewController {
         navigationItem.leftBarButtonItem = editButtonItem
         
         if let savedItems = loadItems() {
-            listItems += savedItems
+            if savedItems.count != 0 {
+                listItems += savedItems
+            } else {
+                loadSampleItems()
+            }
         }
         else {
+            os_log("I guess this doesn't happen", log: OSLog.default, type: .debug)
             // Load sample data
             loadSampleItems()
         }
@@ -54,7 +59,9 @@ class ListItemTableViewController: UITableViewController {
         let listItem = listItems[indexPath.row]
         
         cell.titleLabel.text = listItem.title
-        cell.pictureImageView.image = listItem.photo
+        cell.pictureImageView.image = listItem.photo.photo
+        cell.pictureImageView.center = CGPoint(x: listItem.photo.centerX, y: listItem.photo.centerY)
+        cell.imageScrollView.zoomScale = listItem.photo.scaleAmount
 
         return cell
     }
@@ -149,13 +156,13 @@ class ListItemTableViewController: UITableViewController {
     //MARK: Private Methods
     
     private func loadSampleItems() {
-        let photo = UIImage(named: "defaultPhoto")
+        let photo = Image(photo: UIImage(named: "defaultPhoto")!, scaleAmount: 1.0, centerX: CGFloat(0.0), centerY: CGFloat(0.0))
         
-        guard let listItem1 = ListItem(title: "Default item", photo: photo, notes: "Here are some notes", dateEntered: "1 January, 1970") else {
+        guard let listItem1 = ListItem(title: "Default item", photo: photo!, notes: "Here are some notes", dateEntered: "1 January, 1970") else {
             fatalError("Unable to instantiate list item1")
         }
         
-        guard let listItem2 = ListItem(title: "Default item2", photo: photo, notes: "Here are some more notes", dateEntered: "1 January, 1970") else {
+        guard let listItem2 = ListItem(title: "Default item2", photo: photo!, notes: "Here are some more notes", dateEntered: "1 January, 1970") else {
             fatalError("Unable to instantiate list item2")
         }
         listItems += [listItem1, listItem2]

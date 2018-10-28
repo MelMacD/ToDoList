@@ -8,7 +8,8 @@
 //      - add Image.swift class and have that information persist
 //      1. implement priority and images
 //      2. implement saving and showing date/time due
-//
+//   - fix constraints so is adaptive
+// Note: Hold option key down to zoom on simulator
 //  Created by Melanie MacDonald on 2018-10-15.
 //  Copyright © 2018 Melanie MacDonald. All rights reserved.
 //
@@ -66,7 +67,9 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         if let listItem = listItem {
             navigationItem.title = listItem.title
             titleTextField.text = listItem.title
-            pictureImageView.image = listItem.photo
+            pictureImageView.image = listItem.photo.photo
+            pictureImageView.center = CGPoint(x: listItem.photo.centerX, y: listItem.photo.centerY)
+            imageScrollView.zoomScale = listItem.photo.scaleAmount
             notesTextView.text = listItem.notes
             dateEnteredValue.text = listItem.dateEntered
             doHideDateEntered(flag: false)
@@ -151,7 +154,7 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         if (pickerView.tag == 1 && row == 1){
             doHideDatePicker(flag: false)
         }
-        else {
+        else if (pickerView.tag == 1){
             doHideDatePicker(flag: true)
         }
     }
@@ -183,7 +186,7 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         }
         
         let title = titleTextField.text ?? ""
-        let photo = pictureImageView.image
+        let photo = Image(photo: pictureImageView.image!, scaleAmount: imageScrollView.zoomScale, centerX: determineCenter().x, centerY: determineCenter().y)
         let notes = notesTextView.text ?? ""
         var dateEntered = dateEnteredValue.text ?? ""
         let isPresentingInAddItemMode = presentingViewController is UINavigationController
@@ -193,7 +196,7 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         }
         
         // Set the meal to be passed to ListItemTableViewController after the unwind seque
-        listItem = ListItem(title: title, photo: photo, notes: notes, dateEntered: dateEntered)
+        listItem = ListItem(title: title, photo: photo!, notes: notes, dateEntered: dateEntered)
     }
     
     //MARK: Actions
@@ -277,5 +280,18 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     
     func doHideDatePicker(flag: Bool) {
         datePicker.isHidden = flag
+    }
+    
+    // This isn't quite working, TODO
+    func determineCenter() -> CGPoint{
+        var newX = CGFloat(0.0)
+        var newY = CGFloat(0.0)
+        if (imageScrollView.contentOffset.x > 0) {
+            newX = (imageScrollView.contentOffset.x) * (1 / imageScrollView.zoomScale)
+        }
+        if (imageScrollView.contentOffset.y > 0) {
+            newY = (imageScrollView.contentOffset.y) * (1 / imageScrollView.zoomScale)
+        }
+        return CGPoint(x: newX, y: newY)
     }
 }

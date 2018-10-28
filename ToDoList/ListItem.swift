@@ -14,7 +14,7 @@ class ListItem: NSObject, NSCoding {
     //MARK: Properties
     
     var title: String
-    var photo: UIImage? // change this to image object later
+    var photo: Image
     var notes: String
     //var dueDate: Date// this might need to be a generic type
     var dateEntered: String
@@ -36,7 +36,7 @@ class ListItem: NSObject, NSCoding {
     
     //MARK: Initialization
     
-    init?(title: String, photo: UIImage?, notes: String, dateEntered: String) {
+    init?(title: String, photo: Image, notes: String, dateEntered: String) {
         // Initialization should fail under certain conditions
         guard !title.isEmpty else {
             return nil
@@ -53,7 +53,7 @@ class ListItem: NSObject, NSCoding {
     
     func encode(with aCoder: NSCoder) {
         aCoder.encode(title, forKey: PropertyKey.title)
-        aCoder.encode(photo, forKey: PropertyKey.photo)
+        photo.encode(with: aCoder)
         aCoder.encode(notes, forKey: PropertyKey.notes)
         aCoder.encode(dateEntered, forKey: PropertyKey.dateEntered)
     }
@@ -69,8 +69,8 @@ class ListItem: NSObject, NSCoding {
             os_log("Unable to decode the date entered for a ListItem object", log: OSLog.default, type: .debug)
             return nil
         }
-        // Because photo and notes are optional, use conditional cast
-        let photo = aDecoder.decodeObject(forKey: PropertyKey.photo) as? UIImage
+        let photo = Image(coder: aDecoder)!
+
         let notes = aDecoder.decodeObject(forKey: PropertyKey.notes) as? String
         
         // Must call desginated initializer
