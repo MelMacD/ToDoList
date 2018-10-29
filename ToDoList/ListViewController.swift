@@ -2,10 +2,6 @@
 //  ListViewController.swift
 //  ToDoList
 //
-//TODO: - fix notes so has way to dismiss keyboard
-//      2. implement saving and showing date/time due
-//   - fix constraints so is adaptive
-// Note: Hold option key down to zoom on simulator
 //  Created by Melanie MacDonald on 2018-10-15.
 //  Copyright © 2018 Melanie MacDonald. All rights reserved.
 //
@@ -328,7 +324,7 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
 }
 // TODO: Fix weird navigation
 /*
- 3. Make sorting table less weird
- 4. Dismiss keyboard for notes
- Low Priority: fix center and zoom preservation for tabbed view
+ 1. Fix appearance of tabbed view
+ 2. Fix auto-layout contraints so it is truly adaptive
+ 3. Provide a way to dismiss the notes keyboard
  */
