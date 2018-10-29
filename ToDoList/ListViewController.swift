@@ -24,11 +24,9 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet weak var priorityPicker: UIPickerView!
     // Outlets to control zooming and panning of an image
     @IBOutlet weak var imageScrollView: UIScrollView!
-    @IBOutlet weak var imageViewLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var imageViewTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var imageViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var imageViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
+    // Defines the options for the pickers
     let dateDueOptions = ["", "Select Date", "Immediately"]
     let priorityOptions = ["Low", "Medium", "High"]
     
@@ -91,18 +89,20 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         navigationItem.title = textField.text
     }
     
-    // TODO connect the save button being enabled or disabled to every required field, as necessary
     func textFieldDidBeginEditing(_ textField: UITextField) {
         // Executes on user tapping text field to edit, can indicate to disable save button or not
         saveButton.isEnabled = false
     }
     
-    //MARK: UITextViewDelegate // need to have something like a "done" button on view
-    func textViewShouldReturn(_ textView: UITextView) -> Bool {
-        // Hide the keyboard
-        textView.resignFirstResponder()
-        
-        return true
+    //MARK: UITextViewDelegate
+    
+    // Setup for handling to resign the text view keyboard
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        cancelButton.title = "Done"
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        cancelButton.title = "Cancel"
     }
     
     //MARK: UIImagePickerControllerDelegate
@@ -127,6 +127,8 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         return 1
     }
     
+    // Sets the number of options for the pickers as according to their tag values, and the number of elements in
+    // their "options" arrays
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if (pickerView.tag == 1) {
             return dateDueOptions.count
@@ -136,15 +138,19 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         }
     }
     
+    // Sets the values of the pickers as according to their tag values
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        // The due date picker has a tag of 1
         if (pickerView.tag == 1){
             return "\(dateDueOptions[row])"
         }
+        // The priority picker has a tag of 2
         else{
             return "\(priorityOptions[row])"
         }
     }
     
+    // Shows the date picker if "Select Date" was chosen for the due date picker, otherwise it is hidden
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (pickerView.tag == 1 && row == 1){
             doHideDatePicker(flag: false)
@@ -156,6 +162,12 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     
     //MARK: Navigation
     @IBAction func cancel(_ sender: Any) {
+        // This button should dismiss the text view keyboard if it is open
+        if cancelButton.title == "Done" {
+            notesTextView.resignFirstResponder()
+            return
+        }
+        
         // Depending on style of presentation (modal or push), this view controller needs to be dismissed differently
         let isPresentingInAddItemMode = presentingViewController is UINavigationController
         
@@ -208,7 +220,7 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     func selectImageFromLibrary() {
         // Hide the keyboard.
         titleTextField.resignFirstResponder()
-        // one for notes text field too
+        notesTextView.resignFirstResponder()
         
         // UIImagePickerController is a view controller that lets a user pick media from their photo library.
         let imagePickerController = UIImagePickerController()
@@ -259,15 +271,19 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         saveButton.isEnabled = !text.isEmpty
     }
     
+    // Controls the visibility of the date entered label and value, as it should only be visible for an item
+    // that is being edited, and not when added, as a new item would not have these values yet
     private func doHideDateEntered(flag: Bool) {
         dateEnteredLabel.isHidden = flag
         dateEnteredValue.isHidden = flag
     }
     
+    // Enables zooming and panning on the image, which is embedded in a scroll view
     func viewForZooming(in imageScrollView: UIScrollView) -> UIView? {
         return pictureImageView
     }
     
+    // Converts a Date object to a readable String
     func convertDateToString(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
@@ -277,10 +293,13 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         return dateFormatter.string(from: date)
     }
     
+    // Changes the visibility of the date picker, which should only be visible if "Select Date" was chosen
+    // on the due date picker
     func doHideDatePicker(flag: Bool) {
         datePicker.isHidden = flag
     }
     
+    // Determine how to orient the image in relation to any zooming or panning
     func determineCenter() -> CGPoint{
         var newX = 0.0
         var newY = 0.0
@@ -293,6 +312,7 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         return CGPoint(x: newX, y: newY)
     }
     
+    // Sets the value for the due date according to what the picker has been set to
     func getDueDateValue(selection: Int) -> Any {
         if selection == 0 {
             return 0
@@ -305,6 +325,7 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         }
     }
     
+    // Set the picker to the correct value based on the data type of the due date
     func displayDueDateValue(dateDue: Any) {
         if dateDue is Int && dateDue as! Int == 0 {
             dateDuePicker.selectRow(0, inComponent: 0, animated: true)
@@ -322,11 +343,3 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         }
     }
 }
-// TODO: Fix weird navigation
-/*
- 1. Fix appearance of tabbed view - done
- 2. Fix auto-layout contraints so it is truly adaptive - done sorta
- 3. Provide a way to dismiss the notes keyboard
- 4. Change representation of due date
- 5. Add some documentation
- */

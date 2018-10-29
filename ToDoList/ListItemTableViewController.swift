@@ -187,6 +187,7 @@ class ListItemTableViewController: UITableViewController {
         return NSKeyedUnarchiver.unarchiveObject(withFile: ListItem.ArchiveURL.path) as? [ListItem]
     }
     
+    // Display the respective image to the UI as relates to the priority
     private func getImageForPriority(selection: Int) -> UIImage {
         if selection == 0 {
             return UIImage(named: "lowPriority")!
@@ -199,22 +200,28 @@ class ListItemTableViewController: UITableViewController {
         }
     }
     
+    // Displays the due date according to the type that was saved in storage
     private func displayDateDue(dateDue: Any) -> String {
+        // An int suggests that the due date was empty, so return an empty string
         if dateDue is Int {
             return ""
         }
+        // A date suggests a legitimate date was chosen, so it should be displayed
         else if dateDue is Date {
             return convertDateToString(date: dateDue as! Date)
         }
+        // A string suggests the task is to be done as soon as possible, so return that string
         else if dateDue is String {
             return dateDue as! String
         }
+        // Otherwise indicate that there has been an error
         else {
             os_log("The due date could not be parsed", log: OSLog.default, type: .error)
             return "Error"
         }
     }
     
+    // Converts a Date object into a readable String
     func convertDateToString(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
