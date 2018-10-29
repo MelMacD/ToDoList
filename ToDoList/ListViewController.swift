@@ -327,4 +327,6 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
  1. Fix appearance of tabbed view
  2. Fix auto-layout contraints so it is truly adaptive
  3. Provide a way to dismiss the notes keyboard
+ 4. Change representation of due date
+ 5. Add some documentation
  */

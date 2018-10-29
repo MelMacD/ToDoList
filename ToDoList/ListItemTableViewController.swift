@@ -60,9 +60,9 @@ class ListItemTableViewController: UITableViewController {
         
         cell.titleLabel.text = listItem.title
         cell.pictureImageView.image = listItem.photo.photo
-        cell.imageScrollView.zoomScale = listItem.photo.scaleAmount
+        /*cell.imageScrollView.zoomScale = listItem.photo.scaleAmount
         cell.imageScrollView.contentOffset.x = listItem.photo.centerX
-        cell.imageScrollView.contentOffset.y = listItem.photo.centerY
+        cell.imageScrollView.contentOffset.y = listItem.photo.centerY*/ // commented out as does not scale for the tabbed sized image
         cell.priorityImageView.image = getImageForPriority(selection: listItem.priority)
         cell.dueDateLabel.text = displayDateDue(dateDue: listItem.dateDue)
         
