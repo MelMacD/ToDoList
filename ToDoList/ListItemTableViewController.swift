@@ -83,8 +83,8 @@ class ListItemTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             listItems.remove(at: indexPath.row)
-            saveItems()
             tableView.deleteRows(at: [indexPath], with: .fade)
+            saveItems()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
