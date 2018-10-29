@@ -64,6 +64,7 @@ class ListItemTableViewController: UITableViewController {
         cell.imageScrollView.contentOffset.x = listItem.photo.centerX
         cell.imageScrollView.contentOffset.y = listItem.photo.centerY
         cell.priorityImageView.image = getImageForPriority(selection: listItem.priority)
+        cell.dueDateLabel.text = displayDateDue(dateDue: listItem.dateDue)
         
         return cell
     }
@@ -160,11 +161,11 @@ class ListItemTableViewController: UITableViewController {
     private func loadSampleItems() {
         let photo = Image(photo: UIImage(named: "defaultPhoto")!, scaleAmount: 1.0, centerX: CGFloat(0.0), centerY: CGFloat(0.0))
         
-        guard let listItem1 = ListItem(title: "Default item", photo: photo!, notes: "Here are some notes", dateEntered: "1 January, 1970", priority: 0) else {
+        guard let listItem1 = ListItem(title: "Default item", photo: photo!, notes: "Here are some notes", dateEntered: "1 January, 1970", dateDue: "ASAP", priority: 0) else {
             fatalError("Unable to instantiate list item1")
         }
         
-        guard let listItem2 = ListItem(title: "Default item2", photo: photo!, notes: "Here are some more notes", dateEntered: "1 January, 1970", priority: 0) else {
+        guard let listItem2 = ListItem(title: "Default item2", photo: photo!, notes: "Here are some more notes", dateEntered: "1 January, 1970", dateDue: "ASAP", priority: 0) else {
             fatalError("Unable to instantiate list item2")
         }
         listItems += [listItem1, listItem2]
@@ -194,5 +195,30 @@ class ListItemTableViewController: UITableViewController {
         else {
             return UIImage(named: "highPriority")!
         }
+    }
+    
+    private func displayDateDue(dateDue: Any) -> String {
+        if dateDue is Int {
+            return ""
+        }
+        else if dateDue is Date {
+            return convertDateToString(date: dateDue as! Date)
+        }
+        else if dateDue is String {
+            return dateDue as! String
+        }
+        else {
+            os_log("The due date could not be parsed", log: OSLog.default, type: .error)
+            return "Error"
+        }
+    }
+    
+    func convertDateToString(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .short
+        
+        dateFormatter.locale = Locale(identifier: "en_US")
+        return dateFormatter.string(from: date)
     }
 }

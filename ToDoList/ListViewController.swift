@@ -2,11 +2,7 @@
 //  ListViewController.swift
 //  ToDoList
 //
-// Do not crop image, save in image model the original image, zoom level, and center, view or scrollview
 //TODO: - fix notes so has way to dismiss keyboard
-//      - register gestures to allow for zooming and panning of an image - test
-//      - add Image.swift class and have that information persist
-//      1. implement priority and images
 //      2. implement saving and showing date/time due
 //   - fix constraints so is adaptive
 // Note: Hold option key down to zoom on simulator
@@ -75,6 +71,7 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             dateEnteredValue.text = listItem.dateEntered
             doHideDateEntered(flag: false)
             priorityPicker.selectRow(listItem.priority, inComponent: 0, animated: true)
+            displayDueDateValue(dateDue: listItem.dateDue)
         } else {
             doHideDateEntered(flag: true)
         }
@@ -198,8 +195,10 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         }
         let priority = priorityPicker.selectedRow(inComponent: 0)
         
+        let dateDue = getDueDateValue(selection: dateDuePicker.selectedRow(inComponent: 0))
+        
         // Set the meal to be passed to ListItemTableViewController after the unwind seque
-        listItem = ListItem(title: title, photo: photo!, notes: notes, dateEntered: dateEntered, priority: priority)
+        listItem = ListItem(title: title, photo: photo!, notes: notes, dateEntered: dateEntered, dateDue: dateDue, priority: priority)
     }
     
     //MARK: Actions
@@ -295,6 +294,34 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             newY = Double((imageScrollView.contentOffset.y))
         }
         return CGPoint(x: newX, y: newY)
+    }
+    
+    func getDueDateValue(selection: Int) -> Any {
+        if selection == 0 {
+            return 0
+        }
+        else if selection == 1 {
+            return datePicker.date
+        }
+        else {
+            return "ASAP"
+        }
+    }
+    
+    func displayDueDateValue(dateDue: Any) {
+        if dateDue is Int && dateDue as! Int == 0 {
+            dateDuePicker.selectRow(0, inComponent: 0, animated: true)
+        }
+        else if dateDue is Date {
+            dateDuePicker.selectRow(1, inComponent: 0, animated: true)
+            datePicker.setDate(dateDue as! Date, animated: true)
+        }
+        else if dateDue is String {
+            dateDuePicker.selectRow(2, inComponent: 0, animated: true)
+        }
+        else {
+            os_log("The due date could not be parsed", log: OSLog.default, type: .error)
+        }
     }
 }
 // TODO: Fix weird navigation

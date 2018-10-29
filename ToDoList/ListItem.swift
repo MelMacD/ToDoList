@@ -12,13 +12,12 @@ import os.log
 class ListItem: NSObject, NSCoding {
     
     //MARK: Properties
-    
     var title: String
     var photo: Image
     var notes: String
-    //var dueDate: Date// this might need to be a generic type
     var dateEntered: String
-    var priority: Int// this might ned a different type as well
+    var dateDue: Any
+    var priority: Int
     
     //MARK: Archiving Paths
     
@@ -32,12 +31,13 @@ class ListItem: NSObject, NSCoding {
         static let photo = "photo"
         static let notes = "notes"
         static let dateEntered = "dateEntered"
+        static let dateDue = "dateDue"
         static let priority = "priority"
     }
     
     //MARK: Initialization
     
-    init?(title: String, photo: Image, notes: String, dateEntered: String, priority: Int) {
+    init?(title: String, photo: Image, notes: String, dateEntered: String, dateDue: Any, priority: Int) {
         // Initialization should fail under certain conditions
         guard !title.isEmpty else {
             return nil
@@ -48,6 +48,7 @@ class ListItem: NSObject, NSCoding {
         self.photo = photo
         self.notes = notes
         self.dateEntered = dateEntered
+        self.dateDue = dateDue
         self.priority = priority
     }
     
@@ -58,6 +59,7 @@ class ListItem: NSObject, NSCoding {
         photo.encode(with: aCoder)
         aCoder.encode(notes, forKey: PropertyKey.notes)
         aCoder.encode(dateEntered, forKey: PropertyKey.dateEntered)
+        aCoder.encode(dateDue, forKey: PropertyKey.dateDue)
         aCoder.encode(priority, forKey: PropertyKey.priority)
     }
     
@@ -76,9 +78,13 @@ class ListItem: NSObject, NSCoding {
 
         let notes = aDecoder.decodeObject(forKey: PropertyKey.notes) as? String
         
-        let priority = aDecoder.decodeObject(forKey: PropertyKey.priority) as? Int
+        // if this can't return nil, then should be 0; so String, Date, or Int
+        let dateDue = aDecoder.decodeObject(forKey: PropertyKey.dateDue) as Any
+        
+        let priority = aDecoder.decodeInteger(forKey: PropertyKey.priority)
         
         // Must call desginated initializer
-        self.init(title: title, photo: photo, notes: notes!, dateEntered: dateEntered, priority: priority!)
+        self.init(title: title, photo: photo, notes: notes!, dateEntered: dateEntered, dateDue: dateDue, priority: priority)
     }
+
 }
