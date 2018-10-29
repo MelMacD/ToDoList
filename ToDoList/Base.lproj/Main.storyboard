@@ -253,7 +253,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="9 December, 2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZY-ux-QJO">
-                                            <rect key="frame" x="109" y="68.5" width="266" height="21"/>
+                                            <rect key="frame" x="109" y="68.5" width="251" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -280,7 +280,7 @@
                                         <constraint firstItem="Vw8-qc-Lnh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="05B-zx-i4k" secondAttribute="trailing" constant="8" symbolic="YES" id="UDE-Jo-x0l"/>
                                         <constraint firstItem="05B-zx-i4k" firstAttribute="top" secondItem="tRb-p6-bcg" secondAttribute="bottom" constant="10" id="Uy8-3b-jCb"/>
                                         <constraint firstItem="Vw8-qc-Lnh" firstAttribute="trailing" secondItem="oXb-eC-2Mh" secondAttribute="trailingMargin" id="WIA-WF-fFF"/>
-                                        <constraint firstAttribute="trailing" secondItem="QZY-ux-QJO" secondAttribute="trailing" id="YiJ-eM-ebb"/>
+                                        <constraint firstAttribute="trailing" secondItem="QZY-ux-QJO" secondAttribute="trailing" constant="15" id="YiJ-eM-ebb"/>
                                         <constraint firstAttribute="bottom" secondItem="QZY-ux-QJO" secondAttribute="bottom" constant="10" id="aJc-nP-jf9"/>
                                         <constraint firstItem="QZY-ux-QJO" firstAttribute="leading" secondItem="RSA-Ct-HDL" secondAttribute="trailing" constant="10" id="cRj-sB-aLL"/>
                                         <constraint firstItem="tRb-p6-bcg" firstAttribute="top" secondItem="oXb-eC-2Mh" secondAttribute="topMargin" id="cWu-M1-hGc"/>

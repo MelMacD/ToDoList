@@ -161,11 +161,11 @@ class ListItemTableViewController: UITableViewController {
     private func loadSampleItems() {
         let photo = Image(photo: UIImage(named: "defaultPhoto")!, scaleAmount: 1.0, centerX: CGFloat(0.0), centerY: CGFloat(0.0))
         
-        guard let listItem1 = ListItem(title: "Default item", photo: photo!, notes: "Here are some notes", dateEntered: "1 January, 1970", dateDue: "ASAP", priority: 0) else {
+        guard let listItem1 = ListItem(title: "Default item", photo: photo!, notes: "Here are some notes", dateEntered: "1 January, 1970", dateDue: "Immediately", priority: 0) else {
             fatalError("Unable to instantiate list item1")
         }
         
-        guard let listItem2 = ListItem(title: "Default item2", photo: photo!, notes: "Here are some more notes", dateEntered: "1 January, 1970", dateDue: "ASAP", priority: 0) else {
+        guard let listItem2 = ListItem(title: "Default item2", photo: photo!, notes: "Here are some more notes", dateEntered: "1 January, 1970", dateDue: "Immediately", priority: 0) else {
             fatalError("Unable to instantiate list item2")
         }
         listItems += [listItem1, listItem2]

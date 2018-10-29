@@ -301,7 +301,7 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             return datePicker.date
         }
         else {
-            return "ASAP"
+            return "Immediately"
         }
     }
     
@@ -324,8 +324,8 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
 }
 // TODO: Fix weird navigation
 /*
- 1. Fix appearance of tabbed view
- 2. Fix auto-layout contraints so it is truly adaptive
+ 1. Fix appearance of tabbed view - done
+ 2. Fix auto-layout contraints so it is truly adaptive - done sorta
  3. Provide a way to dismiss the notes keyboard
  4. Change representation of due date
  5. Add some documentation
