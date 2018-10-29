@@ -198,6 +198,7 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         let dateDue = getDueDateValue(selection: dateDuePicker.selectedRow(inComponent: 0))
         
         // Set the meal to be passed to ListItemTableViewController after the unwind seque
+        
         listItem = ListItem(title: title, photo: photo!, notes: notes, dateEntered: dateEntered, dateDue: dateDue, priority: priority)
     }
     
@@ -315,6 +316,7 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         else if dateDue is Date {
             dateDuePicker.selectRow(1, inComponent: 0, animated: true)
             datePicker.setDate(dateDue as! Date, animated: true)
+            doHideDatePicker(flag: false)
         }
         else if dateDue is String {
             dateDuePicker.selectRow(2, inComponent: 0, animated: true)
@@ -326,8 +328,7 @@ class ListViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
 }
 // TODO: Fix weird navigation
 /*
- 2. Save due date and display relevant information
- 3. Implement sorting for table
+ 3. Make sorting table less weird
  4. Dismiss keyboard for notes
  Low Priority: fix center and zoom preservation for tabbed view
  */

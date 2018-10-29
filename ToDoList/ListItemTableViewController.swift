@@ -172,10 +172,12 @@ class ListItemTableViewController: UITableViewController {
     }
     
     private func saveItems() {
+        listItems = SortedListItems(listItems: listItems)!.sortList()
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(listItems, toFile: ListItem.ArchiveURL.path)
         
         if isSuccessfulSave {
             os_log("Items successfully save", log: OSLog.default, type: .debug)
+            self.tableView.reloadData()
         } else {
             os_log("Failed to save items", log: OSLog.default, type: .error)
         }

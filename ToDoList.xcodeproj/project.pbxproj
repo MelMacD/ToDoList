@@ -16,6 +16,7 @@
 		D95C8BF42181258F00EA49B1 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C8BF32181258F00EA49B1 /* ListItem.swift */; };
 		D95C8BF62181259B00EA49B1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C8BF52181259B00EA49B1 /* Image.swift */; };
 		D984E9602184F82000DF2F8C /* ListItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D984E95F2184F82000DF2F8C /* ListItemTableViewController.swift */; };
+		D9DD3278218696EE0021271F /* SortedListItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DD3277218696EE0021271F /* SortedListItems.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		D95C8BF32181258F00EA49B1 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 		D95C8BF52181259B00EA49B1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		D984E95F2184F82000DF2F8C /* ListItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemTableViewController.swift; sourceTree = "<group>"; };
+		D9DD3277218696EE0021271F /* SortedListItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortedListItems.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			children = (
 				D92C8E842175328C002A4A08 /* AppDelegate.swift */,
 				D92C8E862175328C002A4A08 /* ListViewController.swift */,
+				D9DD3277218696EE0021271F /* SortedListItems.swift */,
 				D95C8BF12181230C00EA49B1 /* ListItemTableViewCell.swift */,
 				D984E95F2184F82000DF2F8C /* ListItemTableViewController.swift */,
 				D95C8BF32181258F00EA49B1 /* ListItem.swift */,
@@ -151,6 +154,7 @@
 				D92C8E872175328C002A4A08 /* ListViewController.swift in Sources */,
 				D92C8E852175328C002A4A08 /* AppDelegate.swift in Sources */,
 				D95C8BF22181230C00EA49B1 /* ListItemTableViewCell.swift in Sources */,
+				D9DD3278218696EE0021271F /* SortedListItems.swift in Sources */,
 				D984E9602184F82000DF2F8C /* ListItemTableViewController.swift in Sources */,
 				D95C8BF62181259B00EA49B1 /* Image.swift in Sources */,
 			);
